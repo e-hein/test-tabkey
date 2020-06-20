@@ -95,6 +95,26 @@ export function testApp(appProvider: () => AppHarness) {
         expect(await app.isGreetingShown()).toBe(true, 'no greetings at all');
         expect(await app.getGreetings()).toEqual(jasmine.stringMatching(/Hello.*Jenkins/));
       });
+
+      describe('and delete all', async () => {
+        beforeEach(() => app.sendKeys(
+          ...deleteText('Jenkins and some more keys'),
+          TestKey.SHIFT, TestKey.TAB,
+          // the whole text of first input is selected now
+          TestKey.BACKSPACE,
+        ));
+
+        it('should have no greeter anymore', () => {
+          return app.getGreetings().then(
+            (greetings) => fail('is still showing greetings: ' + greetings),
+            () => expect().nothing(),
+          );
+        });
+      });
     });
   });
+}
+
+function deleteText(text: string): TestKey.BACKSPACE[] {
+  return Array.from(text).map(() => TestKey.BACKSPACE);
 }
