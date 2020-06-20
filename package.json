@@ -5,9 +5,13 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng test",
+    "test": "npm run coverage",
+    "posttest": "npm run e2e",
+    "test_watch": "ng test",
+    "coverage": "ng test --code-coverage --watch false --browsers 'ChromeHeadless'",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e --protractor-config e2e/protractor-headless.conf.js",
+    "protractor": "protractor e2e/protractor.conf.js"
   },
   "private": true,
   "dependencies": {
@@ -29,9 +33,9 @@
     "@angular-devkit/build-angular": "~0.901.8",
     "@angular/cli": "~9.1.8",
     "@angular/compiler-cli": "~9.1.11",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -42,6 +46,7 @@
     "karma-jasmine-html-reporter": "^1.4.2",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
+    "tsconfig-paths": "^3.9.0",
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
   }

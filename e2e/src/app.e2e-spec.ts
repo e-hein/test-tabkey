@@ -1,17 +1,17 @@
-import { AppPage } from './app.po';
+import { ProtractorHarnessEnvironment } from '@angular/cdk/testing/protractor';
+import { AppHarness, testApp } from '@app/testing';
 import { browser, logging } from 'protractor';
 
 describe('workspace-project App', () => {
-  let page: AppPage;
+  let app: AppHarness;
 
-  beforeEach(() => {
-    page = new AppPage();
+  beforeEach(async () => {
+    await browser.get(browser.baseUrl);
+    const loader = ProtractorHarnessEnvironment.loader();
+    app = await loader.getHarness(AppHarness);
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('test-tab-key app is running!');
-  });
+  testApp(() => app);
 
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
