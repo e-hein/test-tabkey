@@ -1,9 +1,16 @@
 <h1>{{title}} app!</h1>
-<mat-form-field>
-  <mat-label>first name</mat-label>
-  <input matInput />
-</mat-form-field>
-<mat-form-field>
-  <mat-label>second name</mat-label>
-  <input matInput />
-</mat-form-field>
+<form [formGroup]="form">
+  <p>
+    <mat-form-field>
+      <mat-label>first name</mat-label>
+      <input matInput formControlName="firstName" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>last name</mat-label>
+      <input matInput formControlName="lastName" />
+    </mat-form-field>
+  </p>
+  <p *ngIf="greeting" class="mat-elevation-z1">
+    <span class="app-greetings">{{greeting}}</span>
+  </p>
+</form>

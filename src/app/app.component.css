@@ -1,0 +1,19 @@
+app-root {
+  display: inline-block;
+  padding: 2em;
+}
+
+mat-form-field:not(:first-of-type) {
+  margin-left: 2em;
+}
+
+@media (max-width: 449px) {
+  mat-form-field{
+    display: block;
+    width: 100%;
+  }
+
+  mat-form-field:not(:first-of-type) {
+    margin-left: 0;
+  }
+}
