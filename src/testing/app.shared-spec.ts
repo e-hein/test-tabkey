@@ -88,7 +88,7 @@ export function testApp(appProvider: () => AppHarness) {
         const firstName = await (await app.getFirstName()).host();
 
         await firstName.click();
-        await firstName.sendKeys('Leeroy', TestKey.TAB, 'Jenkins');
+        await app.sendKeys('Leeroy', TestKey.TAB, 'Jenkins');
       });
 
       it('should say "Hello" to "Jenkins"', async () => {
