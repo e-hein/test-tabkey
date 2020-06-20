@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "test-tab-key"
+    }
+  },
+  "defaultProject": "test-tab-key",
+  "cli": {
+    "analytics": "c4a8ccd1-45b8-4549-9c2a-75cead7b22af"
+  }
 }
