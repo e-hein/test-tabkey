@@ -1,4 +1,5 @@
 import { AppHarness } from './app.harness';
+import { TestKey } from '@angular/cdk/testing';
 
 export function testApp(appProvider: () => AppHarness) {
   let app: AppHarness;
@@ -79,6 +80,20 @@ export function testApp(appProvider: () => AppHarness) {
           expect(await app.isGreetingShown()).toBe(true, 'no greetings at all');
           expect(await app.getGreetings()).toEqual(jasmine.stringMatching(/Hello.*Jenkins/));
         });
+      });
+    });
+
+    describe('after writing "Leeroy" -> tab -> "Jenkins"', async () => {
+      beforeEach(async () => {
+        const firstName = await (await app.getFirstName()).host();
+
+        await firstName.click();
+        await firstName.sendKeys('Leeroy', TestKey.TAB, 'Jenkins');
+      });
+
+      it('should say "Hello" to "Jenkins"', async () => {
+        expect(await app.isGreetingShown()).toBe(true, 'no greetings at all');
+        expect(await app.getGreetings()).toEqual(jasmine.stringMatching(/Hello.*Jenkins/));
       });
     });
   });
